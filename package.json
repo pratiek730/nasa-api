@@ -1,0 +1,19 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "npm install --prefix server && npm install --prefix client",
+    "server": "npm run watch --prefix server",
+    "client": "npm start --prefix client",
+    "watch-app": "npm run server | npm run client",
+    "test-server": "npm test --prefix server",
+    "test-client": "npm test --prefix client",
+    "test": "npm run test-server && npm run test-client"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
