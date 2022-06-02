@@ -5,12 +5,10 @@ const app = express();
 const path = require('path');
 const { launchesRouter } = require('./routes/launches/launches.router');
 
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+app.use(cors());
 app.use(express.json());
-app.use(planetsRouter);
-app.use(launchesRouter);
+app.use('/planets',planetsRouter);
+app.use('/launches',launchesRouter);
 app.use(express.static(path.join(__dirname,'..','public')));
 
 app.get('/*', (req,res) => {
