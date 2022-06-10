@@ -1,10 +1,10 @@
-const { planets } = require("../../../models/planets.module");
+const { getAllPlanets } = require("../../models/planets.module");
 
 
 
-function httpGetAllPlanets(req, res)
+async function httpGetAllPlanets(req, res)
 {
-    return res.status(200).json(planets);
+    return res.status(200).json(await getAllPlanets());
 }
 
 
