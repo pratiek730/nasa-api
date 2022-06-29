@@ -4,10 +4,11 @@ const { loadPlanetsData } = require('./models/planets.module');
 
 
 PORT = process.env.PORT || 8000 ;
-const MONGO_URL = 'mongodb+srv://nasa-api:sf8FctdeVqPf3dHn@cluster0.gwqkoxh.mongodb.net/?retryWrites=true&w=majority'
+const MONGO_URL = 'mongodb://nasa-api:sf8FctdeVqPf3dHn@ac-35d0idq-shard-00-00.gwqkoxh.mongodb.net:27017,ac-35d0idq-shard-00-01.gwqkoxh.mongodb.net:27017,ac-35d0idq-shard-00-02.gwqkoxh.mongodb.net:27017/?ssl=true&replicaSet=atlas-8k6va9-shard-0&authSource=admin&retryWrites=true&w=majority'
 
 
 const app = require('./app');
+const { loadLaunchData } = require('./models/launches.model');
 const server = http.createServer(app);
 
 
@@ -19,8 +20,9 @@ mongoose.connection.on('error', (err) => {
 });
 
 async function startServer(){
-    await mongoose.connect(MONGO_URL);
-    await loadPlanetsData()
+    await mongoose.connect(MONGO_URL,{ useNewUrlParser: true, useUnifiedTopology: true });
+    await loadPlanetsData();
+    await loadLaunchData();
     server.listen(PORT,"0.0.0.0", () => {
         console.log(`Listening on port ${PORT}...`);
     }); 

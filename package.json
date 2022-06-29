@@ -12,9 +12,11 @@
     "test-server": "npm test --prefix server",
     "test-client": "npm test --prefix client",
     "test": "npm run test-server && npm run test-client"
-
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
 }
