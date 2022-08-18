@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
 
 
@@ -18,7 +18,10 @@ async function mongoConnect ()
     });
 }
 
-
+async function mongoDisconnect() {
+    await mongoose.disconnect();
+}
 module.exports = {
     mongoConnect,
+    mongoDisconnect
 }
