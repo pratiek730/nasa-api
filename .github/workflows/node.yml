@@ -16,7 +16,11 @@ jobs:
         mongo-version: ['4.4']
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+
+      
+      - name: Checkout
+        if: ${{env.CI}} == true
+        uses: actions/checkout@v2
       - name: Use Node.js version ${{ matrix.node-version}}
         uses: actions/setup-node@v2
         with:
@@ -29,3 +33,12 @@ jobs:
       - run: npm run install-all
       - run: npm run build --prefix client
       - run: npm test
+      - run: npm set mongo ${{env.MONGO_URL}}
+  test_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testing
+        run: |
+          echo "command 1"
+          echo "command 2"
+    
